@@ -1,0 +1,327 @@
+# ═══════════════════════════════════════════════════════════════
+# BoltClaim Project - Git Ignore Configuration
+# ═══════════════════════════════════════════════════════════════
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ CRITICAL: SENSITIVE DOCUMENTATION & PLANNING FILES            │
+# │ These files contain internal information and strategies       │
+# └───────────────────────────────────────────────────────────────┘
+
+# Requirements and Internal Documentation
+Requirements/
+RULES.md
+planning/
+docs/internal/
+notes/
+TODO.md
+TODO.txt
+NOTES.md
+strategy/
+internal-docs/
+*.prd
+*.priv
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ CONFIGURATION FILES WITH SECRETS                              │
+# └───────────────────────────────────────────────────────────────┘
+
+# Application Configuration Files (NEVER COMMIT WITH REAL CREDENTIALS)
+application.properties
+application-prod.properties
+application-staging.properties
+application-dev.properties
+src/main/resources/application.properties
+src/main/resources/application-*.properties
+
+# Keep template files only
+!application.properties.example
+!application-template.properties
+
+# Environment Files
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# Configuration Directories
+config/*.properties
+config/*.yml
+config/*.yaml
+config/prod/
+config/production/
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ SECURITY KEYS, CERTIFICATES, AND CREDENTIALS                  │
+# └───────────────────────────────────────────────────────────────┘
+
+# Private Keys and Certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.truststore
+
+# Credentials and Secrets
+secrets/
+credentials/
+keys/
+certs/
+*.secret
+*.token
+
+# SSH Keys
+id_rsa
+id_dsa
+id_ed25519
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ MAVEN BUILD OUTPUT                                            │
+# └───────────────────────────────────────────────────────────────┘
+
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ COMPILED CLASS FILES AND PACKAGES                             │
+# └───────────────────────────────────────────────────────────────┘
+
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Keep Maven wrapper JAR
+!.mvn/wrapper/maven-wrapper.jar
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ IDE CONFIGURATION FILES                                       │
+# └───────────────────────────────────────────────────────────────┘
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+### Eclipse / STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ LOGS AND TEMPORARY FILES                                      │
+# └───────────────────────────────────────────────────────────────┘
+
+# Log Files
+logs/
+*.log
+*.log.*
+*.log.gz
+log/
+app.log
+error.log
+access.log
+application.log
+
+# Temporary Files
+temp/
+tmp/
+*.tmp
+cache/
+.cache/
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ OPERATING SYSTEM FILES                                        │
+# └───────────────────────────────────────────────────────────────┘
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.fuse_hidden*
+.Trash-*
+.nfs*
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ DATABASE FILES AND BACKUPS                                    │
+# └───────────────────────────────────────────────────────────────┘
+
+# Database Files (NEVER COMMIT REAL DATA)
+*.sql
+*.db
+*.sqlite
+*.sqlite3
+*.mdb
+*.accdb
+
+# Database Backups
+backup/
+backups/
+*.backup
+*.dump
+db-backup/
+
+# Keep schema templates only
+!schema-template.sql
+!init-template.sql
+
+# H2 Database (testing)
+*.h2.db
+*.mv.db
+*.trace.db
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ TEST AND DEVELOPMENT DATA                                     │
+# └───────────────────────────────────────────────────────────────┘
+
+# Test Data (may contain sensitive info)
+test-data/
+testdata/
+sample-data.sql
+test-results/
+test-output/
+
+# Load Testing Results
+load-test-results/
+performance-test-results/
+jmeter-results/
+*.jtl
+*.csv
+
+# Screenshots (may contain sensitive data)
+screenshots/
+screen-recordings/
+*.mov
+*.mp4
+*.avi
+
+# Keep essential static images for UI
+!src/main/resources/static/images/**
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ SPRING BOOT SPECIFIC                                          │
+# └───────────────────────────────────────────────────────────────┘
+
+# Spring Boot DevTools
+.spring-boot-devtools.properties
+spring-shell.log
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ COVERAGE AND ANALYSIS REPORTS                                 │
+# └───────────────────────────────────────────────────────────────┘
+
+# Code Coverage
+.jacoco/
+*.exec
+coverage/
+htmlcov/
+.coverage
+.coverage.*
+
+# SonarQube
+.sonar/
+.scannerwork/
+
+# JavaDoc
+javadoc/
+api-docs/
+site/
+
+# ┌───────────────────────────────────────────────────────────────┐
+# │ MISCELLANEOUS                                                 │
+# └───────────────────────────────────────────────────────────────┘
+
+# Help documentation
+HELP.md
+
+# Profiler Output
+*.hprof
+*.prof
+*.nps
+profiler/
+
+# Personal notes
+personal-notes/
+my-notes.md
+personal-todo.md
+
+# Gradle (if using)
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# ═══════════════════════════════════════════════════════════════
+# IMPORTANT: Review before committing!
+# NEVER commit real credentials, even temporarily
+# ═══════════════════════════════════════════════════════════════
