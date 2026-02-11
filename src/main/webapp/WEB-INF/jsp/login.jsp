@@ -33,7 +33,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="text-center mb-4">
-                    <a href="/" class="text-decoration-none text-white">
+                    <a href="${pageContext.request.contextPath}/" class="text-decoration-none text-white">
                         <h4 class="fw-bold">⚡ BoltClaim</h4>
                     </a>
                 </div>
@@ -45,7 +45,7 @@
                         <div class="alert alert-danger py-2 small"><%= request.getAttribute("error") %></div>
                     <% } %>
                     
-                    <form action="/login" method="POST">
+                    <form action="${pageContext.request.contextPath}/login" method="POST">
                         <div class="mb-3">
                             <label class="form-label small text-secondary">Email</label>
                             <input type="email" name="email" class="form-control" placeholder="you@example.com" required>
@@ -63,12 +63,12 @@
                     </form>
                     
                     <p class="text-center text-secondary small mb-0">
-                        Don't have an account? <a href="/register" class="text-warning text-decoration-none">Register</a>
+                        Don't have an account? <a href="${pageContext.request.contextPath}/register" class="text-warning text-decoration-none">Register</a>
                     </p>
                 </div>
                 
                 <p class="text-center mt-4">
-                    <a href="/" class="text-secondary small text-decoration-none">← Back to home</a>
+                    <a href="${pageContext.request.contextPath}/" class="text-secondary small text-decoration-none">← Back to home</a>
                 </p>
             </div>
         </div>
