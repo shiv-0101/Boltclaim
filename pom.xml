@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.1</version>
+		<version>4.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bolt</groupId>
@@ -13,43 +13,41 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Boltclaim</name>
 	<description>Flash Sale Coupon Distribution</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>24</java.version>
 	</properties>
+	<packaging>war</packaging>
 	<dependencies>
-		<!-- Spring Boot Web (includes Tomcat, MVC) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
-		<!-- JSP Support -->
+		<!-- Tomcat provided scope for WAR deployment -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- JSP Support - provided by external Tomcat -->
 		<dependency>
 		    <groupId>org.apache.tomcat.embed</groupId>
 		    <artifactId>tomcat-embed-jasper</artifactId>
+		    <scope>provided</scope>
 		</dependency>
 		
-		<!-- JSTL for JSP -->
+		<!-- JSTL API -->
 		<dependency>
 		    <groupId>jakarta.servlet.jsp.jstl</groupId>
 		    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
 		</dependency>
+		
+		<!-- JSTL Implementation -->
 		<dependency>
 		    <groupId>org.glassfish.web</groupId>
 		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+		    <version>3.0.1</version>
 		</dependency>
 		
 		<!-- MySQL Driver -->
@@ -65,12 +63,7 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		
-		<!-- DevTools for hot reload (optional, can remove if confusing) -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+
 	</dependencies>
 
 	<build>
