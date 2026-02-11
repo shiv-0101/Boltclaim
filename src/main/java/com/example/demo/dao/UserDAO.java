@@ -13,13 +13,14 @@ public class UserDAO {
     @Autowired
     private DataSource dataSource;
 
-    public boolean saveUser(String username, String fullName, String email, String password) {
+    public boolean saveUser(String username, String fullName, String email, String password, String role) {
         try (Connection conn = dataSource.getConnection()) {
             // Insert into users table
-            String userSql = "INSERT INTO users (email, password) VALUES (?, ?)";
+            String userSql = "INSERT INTO users (email, password, role) VALUES (?, ?, ?)";
             PreparedStatement userStmt = conn.prepareStatement(userSql, PreparedStatement.RETURN_GENERATED_KEYS);
             userStmt.setString(1, email);
             userStmt.setString(2, password);
+            userStmt.setString(3, role);
             userStmt.executeUpdate();
 
             // Get generated user_id
@@ -44,9 +45,24 @@ public class UserDAO {
         }
     }
 
-    public String validateUser(String email, String password) {
+    public boolean validateAdminKey(String key) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT u.user_id, p.username FROM users u " +
+            String sql = "SELECT setting_value FROM system_settings WHERE setting_key = 'admin_registration_key'";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String storedKey = rs.getString("setting_value");
+                return storedKey.equals(key);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public com.example.demo.beans.User validateUser(String email, String password) {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT u.user_id, u.email, u.role, p.username, p.full_name FROM users u " +
                          "JOIN USER_PROFILES p ON u.user_id = p.user_id " +
                          "WHERE u.email = ? AND u.password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -55,7 +71,13 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
             
             if (rs.next()) {
-                return rs.getString("username");
+                com.example.demo.beans.User user = new com.example.demo.beans.User();
+                user.setUserId(rs.getInt("user_id"));
+                user.setEmail(rs.getString("email"));
+                user.setRole(rs.getString("role"));
+                user.setUsername(rs.getString("username"));
+                user.setFullName(rs.getString("full_name"));
+                return user;
             }
             return null;
         } catch (Exception e) {
